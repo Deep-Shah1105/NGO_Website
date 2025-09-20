@@ -49,13 +49,13 @@ const Footer = () => {
         <div className="text-center md:text-right">
           <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-poppins mb-4">Follow Us</h3>
           <div className="flex justify-center md:justify-end gap-3 sm:gap-4">
-            <a href="#" aria-label="Facebook" className="text-white hover:text-ngo-gold transition-colors">
+            <a href="https://www.facebook.com" aria-label="Facebook" className="text-white hover:text-ngo-gold transition-colors">
               <LinkIcon className="h-6 w-6 sm:h-8 sm:w-8" />
             </a>
-            <a href="#" aria-label="Twitter" className="text-white hover:text-ngo-gold transition-colors">
+            <a href="https://www.x.com" aria-label="Twitter" className="text-white hover:text-ngo-gold transition-colors">
               <LinkIcon className="h-6 w-6 sm:h-8 sm:w-8" />
             </a>
-            <a href="#" aria-label="Instagram" className="text-white hover:text-ngo-gold transition-colors">
+            <a href="https://www.instagram.com" aria-label="Instagram" className="text-white hover:text-ngo-gold transition-colors">
               <LinkIcon className="h-6 w-6 sm:h-8 sm:w-8" />
             </a>
           </div>
