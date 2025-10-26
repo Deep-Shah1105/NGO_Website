@@ -55,7 +55,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Link
-              to="/donate-success"
+              to="/donate"
               className="bg-ngo-gold text-ngo-blue px-6 sm:px-8 py-2 sm:py-3 rounded-full font-bold hover:bg-ngo-blue hover:text-white transition-colors text-sm sm:text-base"
             >
               Support Our Elders

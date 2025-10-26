@@ -1,6 +1,5 @@
 import React from 'react';
-import { LinkIcon } from '@heroicons/react/solid'; // Heroicons v1
-
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 const Footer = () => {
   return (
     <footer className="bg-ngo-blue text-white py-8 sm:py-12">
@@ -10,9 +9,9 @@ const Footer = () => {
         <div className="text-center md:text-left">
           <h3 className="text-xl sm:text-2xl font-bold font-poppins mb-4">Contact us</h3>
           <p className="text-sm sm:text-base text-gray-200 leading-relaxed">
-            📞 9604516653 / 9921912727 / 9881899732 <br />
-            📧 tejaswifoundation2013@gmail.com          
-            </p>
+            📞 <a href="tel:9604516653" className="hover:underline">9604516653</a> / <a href="tel:9921912727" className="hover:underline">9921912727</a> / <a href="tel:9881899732" className="hover:underline">9881899732</a><br />
+            📧 <a href="mailto:tejaswifoundation2013@gmail.com" className="hover:underline">tejaswifoundation2013@gmail.com</a>
+          </p>
         </div>
 
         {/* Center Section */}
@@ -29,11 +28,11 @@ const Footer = () => {
         <div className="text-center md:text-right">
           <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-poppins mb-4">Follow Us</h3>
           <div className="flex justify-center md:justify-end gap-3 sm:gap-4">
-            <a href="#" aria-label="Facebook" className="text-white hover:text-ngo-gold transition-colors">
-              <LinkIcon className="h-6 w-6 sm:h-8 sm:w-8" />
+            <a href="https://www.facebook.com/tejashwiMH/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white hover:text-ngo-gold transition-colors">
+              <FaFacebookF className="h-6 w-6 sm:h-8 sm:w-8" />
             </a>
-            <a href="#" aria-label="Instagram" className="text-white hover:text-ngo-gold transition-colors">
-              <LinkIcon className="h-6 w-6 sm:h-8 sm:w-8" />
+            <a href="https://www.instagram.com/suryoday_old_age_home_official?igsh=bmhvZnBxbXNpNDJ2" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white hover:text-ngo-gold transition-colors">
+              <FaInstagram className="h-6 w-6 sm:h-8 sm:w-8" />
             </a>
           </div>
         </div>
