@@ -12,7 +12,7 @@ const Header = () => {
         <Link to="/" className="mr-auto">
           <img 
             src={logo} 
-            alt="NGO Empower Logo" 
+            alt="Tejaswi Foundation Logo" 
             className="h-12 sm:h-14 md:h-20 w-auto max-w-[180px]"
           />
         </Link>

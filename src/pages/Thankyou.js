@@ -5,8 +5,8 @@ const ThankYou = () => {
   return (
     <main className="bg-gray-50 min-h-screen py-12 sm:py-16 md:py-20">
       <Helmet>
-        <title>NGO Empower - Thank You</title>
-        <meta name="description" content="Thank you for your generous donation to NGO Empower." />
+        <title>Tejaswi Foundation - Thank You</title>
+        <meta name="description" content="Thank you for your generous donation to Tejaswi Foundation." />
       </Helmet>
       <div className="container mx-auto px-2 sm:px-4">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ngo-blue font-poppins mb-6 sm:mb-8 text-center">

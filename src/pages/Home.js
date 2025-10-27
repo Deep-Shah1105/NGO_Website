@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { UsersIcon, GiftIcon, CurrencyDollarIcon } from '@heroicons/react/solid';
 import Hero from '../components/Hero';
@@ -10,7 +11,7 @@ const Home = () => {
   return (
     <main className="bg-gray-50">
       <Helmet>
-        <title>NGO Empower - Home</title>
+        <title>Tejaswi Foundation - Home</title>
         <meta name="description" content="Empowering lives through education, aid, and community." />
       </Helmet>
       <Hero />
@@ -45,12 +46,12 @@ const Home = () => {
             ))}
           </div>
           <div className="text-center mt-8 sm:mt-12">
-            <a 
-              href="/donate" 
+            <Link 
+              to="/donate" 
               className="bg-ngo-gold text-ngo-blue px-6 sm:px-8 py-2 sm:py-3 rounded-full font-bold hover:bg-ngo-blue hover:text-white transition-colors inline-block text-sm sm:text-base"
             >
               Get Involved
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -80,13 +81,13 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <a 
-        href="/donate" 
+      <Link 
+        to="/donate" 
         className="fixed bottom-4 right-4 bg-ngo-gold text-ngo-blue p-3 rounded-full shadow-lg hover:bg-ngo-blue hover:text-white md:hidden z-50"
         aria-label="Donate now"
       >
         Donate
-      </a>
+      </Link>
     </main>
   );
 };
