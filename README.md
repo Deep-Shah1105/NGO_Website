@@ -1,70 +1,130 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Razorpay Payment Integration
 
-## Available Scripts
+A simple web application consisting of a Node.js backend for handling Razorpay payments and a 3-page static frontend site. The backend provides secure payment order creation and verification, while the frontend allows users to interact with the payment flow.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Backend (Node.js/Express)**:
+  - Create Razorpay payment orders.
+  - Verify payment signatures for security.
+  - CORS-enabled for frontend integration.
+  - Environment variable support for secure key management.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend (Static Site)**:
+  - 3-page structure (e.g., Home, Payment, Confirmation – customize as needed).
+  - Integrates with the backend API for seamless payments.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Deployment**: Hosted on Render for easy scaling.
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Backend**: Node.js, Express, Razorpay SDK, Crypto (for HMAC verification), CORS.
+- **Frontend**: HTML, CSS, JavaScript (static files).
+- **Deployment**: Render (cloud hosting).
+- **Other**: dotenv for environment variables.
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (v14 or higher) installed locally.
+- A Razorpay account with API keys (get them from [Razorpay Dashboard](https://dashboard.razorpay.com/)).
+- Git for cloning the repo.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Steps
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install Backend Dependencies**:
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+3. **Set Up Environment Variables**:
+   - Create a `.env` file in the root directory (same as `server.js`).
+   - Add your Razorpay credentials:
+     ```
+     RAZORPAY_KEY_ID=your_razorpay_key_id_here
+     RAZORPAY_KEY_SECRET=your_razorpay_key_secret_here
+     ```
+   - **Security Note**: Never commit `.env` to version control. Add it to `.gitignore`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Run Locally**:
+   - Start the backend server:
+     ```bash
+     npm start
+     ```
+   - The server will run on `http://localhost:5000` (or the port in `process.env.PORT`).
+   - Open your static frontend files (e.g., `index.html`) in a browser and point API calls to `http://localhost:5000/api/...`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. **Frontend Setup**:
+   - Your 3-page static site files (HTML, CSS, JS) should be in a separate folder (e.g., `frontend/` or at the root).
+   - Ensure JavaScript in the frontend makes fetch requests to the backend endpoints.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Backend API Endpoints
+- **POST /api/create-order**:
+  - Request Body: `{ "amount": 100, "currency": "INR" }` (amount in rupees, e.g., 100 = ₹1.00).
+  - Response: Razorpay order object (includes order ID for frontend integration).
 
-## Learn More
+- **POST /api/payment-verification**:
+  - Request Body: `{ "razorpay_order_id": "...", "razorpay_payment_id": "...", "razorpay_signature": "..." }` (from Razorpay's payment success callback).
+  - Response: `{ "success": true, "message": "Payment verified successfully." }` or error if verification fails.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Frontend Integration
+- Use Razorpay's Checkout.js in your static pages to handle the payment UI.
+- On payment success, send the verification data to `/api/payment-verification`.
+- Example JavaScript snippet (in your frontend):
+  ```javascript
+  // After Razorpay checkout success
+  fetch('/api/payment-verification', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      razorpay_order_id: orderId,
+      razorpay_payment_id: paymentId,
+      razorpay_signature: signature
+    })
+  });
+  ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Testing
+- Use tools like Postman or curl to test endpoints locally.
+- For full flow: Load the frontend, initiate a payment, and verify on the backend.
 
-### Code Splitting
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. **Push to GitHub**: Ensure all files (backend, frontend, `package.json`, etc.) are committed to a GitHub repo.
 
-### Analyzing the Bundle Size
+2. **Deploy on Render**:
+   - Sign up at [render.com](https://render.com).
+   - Create a new Web Service, connect your GitHub repo.
+   - Configure:
+     - Runtime: Node.
+     - Build Command: `npm install`.
+     - Start Command: `npm start`.
+     - Environment Variables: Set `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET` as secrets.
+   - Deploy. Your app will be live at `https://your-app-name.onrender.com`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. **Update Frontend**: Change API URLs in your static files to point to the Render URL (e.g., `https://your-app-name.onrender.com/api/...`).
 
-### Making a Progressive Web App
+4. **Notes**:
+   - Render provides HTTPS automatically (required for Razorpay in production).
+   - Free tier sleeps after inactivity; upgrade for 24/7 uptime.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contributing
 
-### Advanced Configuration
+- Fork the repo and submit pull requests.
+- Report issues via GitHub Issues.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## License
 
-### Deployment
+This project is licensed under the MIT License. See `LICENSE` for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For questions or support, contact [your-email@example.com] or open an issue on GitHub. Enjoy building with Razorpay! 🚀
